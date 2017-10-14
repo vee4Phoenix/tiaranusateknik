@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-csp ng-app="App">
+  <head ng-controller="HeadController as headCtrl">
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      connect-src 'self';
+      font-src    'self';
+      img-src     'self' data:;
+      media-src   'none';
+      object-src  'none';
+      style-src   'self';
+      script-src  'self';
+    ">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <base href="/">
+    <!--link rel="shortcut icon" type="image/png" href="assets/img/activeperform-icon-2017.png"-->
+    <link type="text/css" rel="stylesheet" href="assets/css/angular-csp.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-theme.min.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/ui-bootstrap-2.5.0-csp.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/image.css" media="screen and (-webkit-max-device-pixel-ratio: 1)" /><!-- image css -->
+    <link type="text/css" rel="stylesheet" href="assets/css/image@2x.css" media="screen and (-webkit-min-device-pixel-ratio: 1.5)" /><!-- retina css -->
+
+    <link type="text/css" rel="stylesheet" ng-href="{{headCtrl.css}}" />
+    <title>{{headCtrl.meta.title}}</title>
+  </head>
+  <body>
+    <div id="container" ng-controller="GlobalController as globalCtrl">
+
+      <!-- ===== HEADER ===== -->
+      <header>
+          <!--<div ng-click="globalCtrl.onBack()" ng-show="globalCtrl.isBackButtonVisible()" id="btn_back">Back</div>-->
+      </header><!-- header -->
+
+      <!-- ===== NAVIGATION ===== -->
+      <nav>
+        <div class="wrapper">
+          <div id="menu">
+            <ul>
+              <!--li><a id="nav-logout" href="#">Logout</a></li-->
+            </ul>
+          </div>
+          <div class="clear"></div>
+        </div><!-- .wrapper -->
+      </nav><!-- nav -->
+
+      <!-- ===== BODY ===== -->
+      <div id="body">
+          <div id="content" ng-view>
+
+          </div>
+      </div><!-- #body -->
+
+      <div id="loading_dialog" class="loading_overlay" ng-show="globalCtrl.isLoading"></div>
+      <div id="spinner" ng-show="globalCtrl.isLoading"></div>
+
+
+
+      <!-- ===== FOOTER ===== -->
+      <footer>
+        <div class="wrapper">
+        </div><!-- .wrapper -->
+      </footer><!-- footer -->
+
+    </div><!-- end of container -->
+
+    <!-- Libraries -->
+    <script type="application/javascript" src="assets/libs/angular.min.js"></script>
+    <script type="application/javascript" src="assets/libs/angular-animate.min.js"></script>
+    <script type="application/javascript" src="assets/libs/angular-route.min.js"></script>
+    <script type="application/javascript" src="assets/libs/angular-touch.min.js"></script>
+    <script type="application/javascript" src="assets/libs/ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+    <!-- Shared components -->
+    <script type="application/javascript" src="app/app.module.js"></script>
+    <script type="application/javascript" src="app/shared/shared.constants.js"></script>
+    <script type="application/javascript" src="app/shared/shared.controller.global.js"></script>
+    <script type="application/javascript" src="app/shared/shared.controller.head.js"></script>
+    <!--
+    <script type="application/javascript" src="app/shared/shared.directive.bool.js"></script>
+    <script type="application/javascript" src="app/shared/shared.directive.string.js"></script>
+    -->
+    <script type="application/javascript" src="app/shared/shared.model.api.js"></script>
+    <script type="application/javascript" src="app/shared/shared.model.cache.js"></script>
+    <script type="application/javascript" src="app/shared/shared.model.global.js"></script>
+    <script type="application/javascript" src="app/shared/shared.model.web.js"></script>
+
+    <!-- Custom components -->
+    <script type="application/javascript" src="app/components/main/main.config.constants.js"></script>
+    <script type="application/javascript" src="app/components/main/main.config.routes.js"></script>
+    <script type="application/javascript" src="app/components/main/main.index.controller.js"></script>
+    <script type="application/javascript" src="app/components/main/main.index.model.js"></script>
+
+  </body>
+</html>
