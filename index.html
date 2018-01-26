@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-csp ng-app="App">
-  <head ng-controller="HeadController as headCtrl">
-    <meta http-equiv="Content-Security-Policy" content="
+<html ng-csp ng-app='App'>
+  <head ng-controller='HeadController as headCtrl'>
+    <meta http-equiv='Content-Security-Policy' content="
       default-src 'self';
       connect-src 'self';
       font-src    'self';
@@ -11,86 +11,120 @@
       style-src   'self';
       script-src  'self';
     ">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <base href="/">
-    <!--link rel="shortcut icon" type="image/png" href="assets/img/activeperform-icon-2017.png"-->
-    <link type="text/css" rel="stylesheet" href="assets/css/angular-csp.css" />
-    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-theme.min.css" />
-    <link type="text/css" rel="stylesheet" href="assets/css/ui-bootstrap-2.5.0-csp.css" />
-    <link type="text/css" rel="stylesheet" href="assets/css/image.css" media="screen and (-webkit-max-device-pixel-ratio: 1)" /><!-- image css -->
-    <link type="text/css" rel="stylesheet" href="assets/css/image@2x.css" media="screen and (-webkit-min-device-pixel-ratio: 1.5)" /><!-- retina css -->
+    <meta charset='utf-8' />
+    <meta name='viewport' content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width'>
+    <base href='/'>
+    <!--link rel='shortcut icon' type='image/png' href='assets/img/activeperform-icon-2017.png'-->
+    <link type='text/css' rel='stylesheet' href='assets/css/angular-csp.css' />
+    <link type='text/css' rel='stylesheet' href='assets/css/bootstrap.min.css' />
+    <link type='text/css' rel='stylesheet' href='assets/css/bootstrap-theme.min.css' />
+    <link type='text/css' rel='stylesheet' href='assets/css/ui-bootstrap-2.5.0-csp.css' />
+    <link type='text/css' rel='stylesheet' href='assets/css/image.css' media='screen and (-webkit-max-device-pixel-ratio: 1)' /><!-- image css -->
+    <link type='text/css' rel='stylesheet' href='assets/css/image@2x.css' media='screen and (-webkit-min-device-pixel-ratio: 1.5)' /><!-- retina css -->
 
-    <link type="text/css" rel="stylesheet" ng-href="{{headCtrl.css}}" />
-    <title>{{headCtrl.meta.title}}</title>
+    <link type='text/css' rel='stylesheet' ng-href='{{headCtrl.css}}' />
+    <title>{{headCtrl.title}}</title>
+    <meta name='description' content='{{headCtrl.description}}'/>
   </head>
   <body>
-    <div id="container" ng-controller="GlobalController as globalCtrl">
+    <div id='container' ng-controller='GlobalController as globalCtrl'>
 
       <!-- ===== HEADER ===== -->
       <header>
-          <!--<div ng-click="globalCtrl.onBack()" ng-show="globalCtrl.isBackButtonVisible()" id="btn_back">Back</div>-->
+        <div class='container'>
+          <div class='row'>
+            <div class='col-lg-2 col-lg-offset-10 text-right'>
+              <div class='btn-group' role='group'>
+                <button type='button' class='btn btn-default' ng-class='globalCtrl.selectedLang == "id" ? "active" : ""' ng-click='globalCtrl.onLanguageSelected("id")'>ID</button>
+                <button type='button' class='btn btn-default' ng-class='globalCtrl.selectedLang == "en_US" ? "active" : ""' ng-click='globalCtrl.onLanguageSelected("en_US")'>ENG</button>
+              </div>
+            </div><!-- .col -->
+          </div><!-- .row -->
+        </div> <!-- .container -->
+          <!--<div ng-click='globalCtrl.onBack()' ng-show='globalCtrl.isBackButtonVisible()' id='btn_back'>Back</div>-->
       </header><!-- header -->
 
       <!-- ===== NAVIGATION ===== -->
       <nav>
-        <div class="wrapper">
-          <div id="menu">
-            <ul>
-              <!--li><a id="nav-logout" href="#">Logout</a></li-->
-            </ul>
-          </div>
-          <div class="clear"></div>
-        </div><!-- .wrapper -->
+        <div class='container'>
+          <ul class='nav nav-pills nav-justified'>
+            <li><a ng-href='{{globalCtrl.routes.PATH_INDEX}}'>{{globalCtrl.locale.NAV_HOME}}</a></li>
+            <li uib-dropdown>
+              <a id='nav-about' uib-dropdown-toggle ng-href='#'>{{globalCtrl.locale.NAV_ABOUT}} <span class='caret'></span></a>
+              <ul class='dropdown-menu' uib-dropdown-menu role="menu" aria-labelledby="nav-about">
+                <li role='menuitem'><a ng-href='{{globalCtrl.routes.PATH_OUR_BUSINESS}}'>{{globalCtrl.locale.NAV_OUR_BUSINESS}}</a></li>
+                <li role='menuitem'><a ng-href='{{globalCtrl.routes.PATH_VISION_MISSION}}'>{{globalCtrl.locale.NAV_VISION}}</a></li>
+              </ul>
+            </li>
+            <li uib-dropdown>
+              <a id='nav-products' uib-dropdown-toggle ng-href='#'>{{globalCtrl.locale.NAV_PRODUCTS}} <span class='caret'></span></a>
+              <ul class='dropdown-menu' uib-dropdown-menu role="menu" aria-labelledby="nav-products">
+                <li role='menuitem'><a ng-href='{{globalCtrl.routes.PATH_PROPELLERS}}'>{{globalCtrl.locale.NAV_PROPELLERS}}</a></li>
+                <li role='menuitem'><a ng-href='{{globalCtrl.routes.PATH_CPP}}'>{{globalCtrl.locale.NAV_CPP}}</a></li>
+                <li role='menuitem'><a ng-href='{{globalCtrl.routes.PATH_FPP}}'>{{globalCtrl.locale.NAV_FPP}}</a></li>
+                <li role='menuitem'><a ng-href='{{globalCtrl.routes.PATH_TUNNEL_THRUSTER}}'>{{globalCtrl.locale.NAV_TUNNEL_THRUSTER}}</a></li>
+                <li class="divider"></li>
+                <li role='menuitem'><a ng-href='{{globalCtrl.routes.PATH_SHAFT}}'>{{globalCtrl.locale.NAV_SHAFT}}</a></li>
+                <li role='menuitem'><a ng-href='{{globalCtrl.routes.PATH_STERNTUBE}}'>{{globalCtrl.locale.NAV_STERNTUBE}}</a></li>
+                <li role='menuitem'><a ng-href='{{globalCtrl.routes.PATH_RUDDER_STOCK}}'>{{globalCtrl.locale.NAV_RUDDER_STOCK}}</a></li>
+              </ul>
+            </li>
+            <li><a ng-href='{{globalCtrl.routes.PATH_PARTNERS}}'>{{globalCtrl.locale.NAV_PARTNERS}}</a></li>
+            <li><a ng-href='{{globalCtrl.routes.PATH_CONTACT}}'>{{globalCtrl.locale.NAV_CONTACT}}</a></li>
+          </ul>
+        </div><!-- .container -->
       </nav><!-- nav -->
 
       <!-- ===== BODY ===== -->
-      <div id="body">
-          <div id="content" ng-view>
+      <div id='body'>
+          <div id='content' class='container' ng-view>
 
           </div>
       </div><!-- #body -->
 
-      <div id="loading_dialog" class="loading_overlay" ng-show="globalCtrl.isLoading"></div>
-      <div id="spinner" ng-show="globalCtrl.isLoading"></div>
+      <div id='loading_dialog' class='loading_overlay' ng-show='globalCtrl.isLoading'></div>
+      <div id='spinner' ng-show='globalCtrl.isLoading'></div>
 
 
 
       <!-- ===== FOOTER ===== -->
       <footer>
-        <div class="wrapper">
+        <div class='container'>
+          <hr />
+          <p class='text-center'>{{globalCtrl.locale.FOOTER_COPYRIGHT}}</p>
         </div><!-- .wrapper -->
       </footer><!-- footer -->
 
     </div><!-- end of container -->
 
     <!-- Libraries -->
-    <script type="application/javascript" src="assets/libs/angular.min.js"></script>
-    <script type="application/javascript" src="assets/libs/angular-animate.min.js"></script>
-    <script type="application/javascript" src="assets/libs/angular-route.min.js"></script>
-    <script type="application/javascript" src="assets/libs/angular-touch.min.js"></script>
-    <script type="application/javascript" src="assets/libs/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script type='application/javascript' src='assets/libs/angular.min.js'></script>
+    <script type='application/javascript' src='assets/libs/angular-animate.min.js'></script>
+    <script type='application/javascript' src='assets/libs/angular-route.min.js'></script>
+    <script type='application/javascript' src='assets/libs/angular-touch.min.js'></script>
+    <script type='application/javascript' src='assets/libs/ui-bootstrap-tpls-2.5.0.min.js'></script>
+
+    <script type='application/javascript' src='app/app.module.js'></script>
+
+    <!-- locale -->
+    <script type='application/javascript' src='locale/locale.en_US.js'></script>
+    <script type='application/javascript' src='locale/locale.id.js'></script>
 
     <!-- Shared components -->
-    <script type="application/javascript" src="app/app.module.js"></script>
-    <script type="application/javascript" src="app/shared/shared.constants.js"></script>
-    <script type="application/javascript" src="app/shared/shared.controller.global.js"></script>
-    <script type="application/javascript" src="app/shared/shared.controller.head.js"></script>
+    <script type='application/javascript' src='app/shared/shared.constants.js'></script>
+    <script type='application/javascript' src='app/shared/shared.config.routes.js'></script>
+    <script type='application/javascript' src='app/shared/shared.controller.head.js'></script>
+    <script type='application/javascript' src='app/shared/shared.controller.global.js'></script>
+    <script type='application/javascript' src='app/shared/shared.model.global.js'></script>
     <!--
-    <script type="application/javascript" src="app/shared/shared.directive.bool.js"></script>
-    <script type="application/javascript" src="app/shared/shared.directive.string.js"></script>
+    <script type='application/javascript' src='app/shared/shared.directive.bool.js'></script>
+    <script type='application/javascript' src='app/shared/shared.directive.string.js'></script>
+    <script type='application/javascript' src='app/shared/shared.model.api.js'></script>
+    <script type='application/javascript' src='app/shared/shared.model.cache.js'></script>
+    <script type='application/javascript' src='app/shared/shared.model.web.js'></script>
     -->
-    <script type="application/javascript" src="app/shared/shared.model.api.js"></script>
-    <script type="application/javascript" src="app/shared/shared.model.cache.js"></script>
-    <script type="application/javascript" src="app/shared/shared.model.global.js"></script>
-    <script type="application/javascript" src="app/shared/shared.model.web.js"></script>
 
     <!-- Custom components -->
-    <script type="application/javascript" src="app/components/main/main.config.constants.js"></script>
-    <script type="application/javascript" src="app/components/main/main.config.routes.js"></script>
-    <script type="application/javascript" src="app/components/main/main.index.controller.js"></script>
-    <script type="application/javascript" src="app/components/main/main.index.model.js"></script>
 
   </body>
 </html>

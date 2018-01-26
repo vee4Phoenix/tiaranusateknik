@@ -10,8 +10,6 @@
   function GlobalFactory($location)
   {
     return {
-      meta : { title : '' },
-
 
       setPath : function(path) {
         $location.path(path);

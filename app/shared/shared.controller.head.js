@@ -11,14 +11,18 @@
     var controller = this;
     var compRoot = 'app/components/';
     //controller.css = compRoot + 'main/main.index.view.css';
-    controller.css = '';
-    controller.meta = GlobalFactory.meta;
 
+    // default value
+    controller.css = '';
+    controller.title = '';
+    controller.description = '';
 
     $scope.$on('$routeChangeSuccess', function($event, current) {
-      if (current.css) {
-        controller.css = compRoot + current.css;
-      }
+
+      if (current.css)          { controller.css = compRoot + current.css; }
+      if (current.title)        { controller.title = current.title; }
+      if (current.description)  { controller.description = current.description; }
+      
     });
   }
 })();

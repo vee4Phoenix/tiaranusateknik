@@ -1,4 +1,14 @@
+Options -Indexes
+Options +FollowSymlinks
+
+DirectoryIndex index.html
+
+ErrorDocument 404 http://tiaranusateknik.local/errors/error-404
+ErrorDocument 403 http://tiaranusateknik.local/errors/error-403
+ErrorDocument 500 http://tiaranusateknik.local/errors/error-500
+
 RewriteEngine On
+
 # If an existing asset or directory is requested go to it as it is
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
@@ -6,3 +16,9 @@ RewriteRule ^ - [L]
 
 # If the requested resource doesn't exist, use index.html
 RewriteRule ^ /index.html
+
+<Files .htaccess>
+  Require all denied
+</Files>
+
+#TODO: secure asset files
